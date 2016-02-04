@@ -4,10 +4,12 @@ import re
 c = get_config()
 
 c.JupyterHub.hub_ip = '0.0.0.0'
-c.DockerSpawner.use_docker_client_env = True
-c.DockerSpawner.tls_assert_hostname = True
 
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+c.DockerSpawner.tls_verify = True
+c.DockerSpawner.tls_ca = "/etc/docker/ca.pem"
+c.DockerSpawner.tls_cert = "/etc/docker/server-cert.pem"
+c.DockerSpawner.tls_key = "/etc/docker/server-key.pem"
 
 c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
 
